@@ -4,9 +4,6 @@ import './Pomodoro.css';
 
 
 export function Pomodoro() {
-
-  localStorage.setItem('Pomodoros', '0');
-
   return (
     <div id="App">
       <h1>Pomodoro</h1>

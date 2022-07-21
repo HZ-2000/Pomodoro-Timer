@@ -9,7 +9,6 @@ var timerState = {
 
 
 export function Timer() {
-
   const [time, updateTime] = useState('00:00');
   const [ticking, toggleTimer] = useState(false); 
 
@@ -47,8 +46,8 @@ export function Timer() {
   }
 
   return (
-    <div id="Timer">
-      <span>{time}</span>
+    <div id='Timer'>
+      <span id='time'>{time}</span>
       <div id='buttons'>
         <button onClick={() => toggleTimer(!ticking)}>
           {ticking ? "Stop" : "Start"}
