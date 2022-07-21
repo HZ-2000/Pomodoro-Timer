@@ -3,8 +3,10 @@ import './Timer.css';
 
 
 var timerState = {
-  'sec': 10,
-  'min': 0,
+  'sec': 0,
+  'min': 25,
+  'pomodoros': 0,
+  'isBreak': false
 }
 
 
@@ -21,8 +23,7 @@ export function Timer() {
       if (timerState.sec === 0) {
         if(timerState.min === 0){
           toggleTimer(false);
-          var poms = parseInt(localStorage.getItem('Pomodoros') || '0');
-          localStorage.setItem('Pomodoros', String(poms + 1));
+          timerState.pomodoros += 1;
           reset();
           return () => clearInterval(timer);
         }
@@ -40,14 +41,30 @@ export function Timer() {
   }, [ticking]);
 
   const reset = () => {
-    timerState.min = 25;
-    timerState.sec = 0;
+    timerState.isBreak = !timerState.isBreak;
+    if(timerState.isBreak){
+      if((timerState.pomodoros % 3) === 0 && timerState.pomodoros !== 0){
+        timerState.min = 30;
+        timerState.sec = 0;
+      }
+      else{
+        timerState.min = 5;
+        timerState.sec = 0;
+      }
+    }
+    else{
+      timerState.min = 25;
+      timerState.sec = 0;
+    }
     updateTime((timerState.min >= 10 ? timerState.min : '0' + timerState.min) + ':' + (timerState.sec >= 10 ? timerState.sec : '0' + timerState.sec));
   }
 
   return (
     <div id='Timer'>
+      <p>{timerState.isBreak ? 'Break':'Working'}</p>
       <span id='time'>{time}</span>
+      <p>Poms Complete: {timerState.pomodoros}</p> 
+      <p>Next Big Break in: {3 - (timerState.pomodoros % 3)}</p>
       <div id='buttons'>
         <button onClick={() => toggleTimer(!ticking)}>
           {ticking ? "Stop" : "Start"}
