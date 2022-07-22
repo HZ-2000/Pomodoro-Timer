@@ -1,3 +1,16 @@
 #App {
+  font-family: "Major Mono Display";
   text-align: center;
+  min-height: 100vh;
+  background-image: url('../../assets/img/pawel-czerwinski-BNhoExCn9V4-unsplash.jpg');
+  background-size: cover;
+  color: white
+}
+
+#title {
+  text-align: initial;
+  font-size: 3em;
+  padding-left: 4%;
+  padding-top: 1.5%;
+  margin: 0%;
 }

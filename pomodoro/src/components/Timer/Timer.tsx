@@ -22,6 +22,7 @@ export function Timer() {
 
       if (timerState.sec === 0) {
         if(timerState.min === 0){
+          timerState.isBreak = !timerState.isBreak;
           toggleTimer(false);
           timerState.pomodoros += 1;
           reset();
@@ -29,7 +30,7 @@ export function Timer() {
         }
         else{
           timerState.min -= 1;
-          timerState.sec = 60;
+          timerState.sec = 59;
         }
       }
 
@@ -41,7 +42,6 @@ export function Timer() {
   }, [ticking]);
 
   const reset = () => {
-    timerState.isBreak = !timerState.isBreak;
     if(timerState.isBreak){
       if((timerState.pomodoros % 3) === 0 && timerState.pomodoros !== 0){
         timerState.min = 30;
@@ -61,18 +61,18 @@ export function Timer() {
 
   return (
     <div id='Timer'>
-      <p>{timerState.isBreak ? 'Break':'Working'}</p>
+      <p>{timerState.isBreak ? 'break':'working'}</p>
       <span id='time'>{time}</span>
-      <p>Poms Complete: {timerState.pomodoros}</p> 
-      <p>Next Big Break in: {3 - (timerState.pomodoros % 3)}</p>
       <div id='buttons'>
         <button onClick={() => toggleTimer(!ticking)}>
-          {ticking ? "Stop" : "Start"}
+          {ticking ? "stop" : "start"}
         </button>
         <button onClick={() => reset()}>
-          Reset
+          reset
         </button>
       </div>
+      <p>poms complete: {timerState.pomodoros}</p> 
+      <p>next big break in: {3 - (timerState.pomodoros % 3)}</p>
     </div>
   );
 }

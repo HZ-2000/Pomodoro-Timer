@@ -6,7 +6,7 @@ import './Pomodoro.css';
 export function Pomodoro() {
   return (
     <div id="App">
-      <h1>Pomodoro</h1>
+      <h1 id='title'>pomodoro</h1>
       <Timer />
       <Journal />
     </div>

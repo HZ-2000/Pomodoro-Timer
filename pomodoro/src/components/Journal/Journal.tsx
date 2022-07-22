@@ -14,12 +14,12 @@ export function Journal() {
     }
 
     return (
-        <div id="App">
-            <h1>Journal</h1>
+        <div>
+            <h1 id='journalTitle'>journal</h1>
             <div>
-                <form onSubmit={handleSubmit}>
-                    <input type='text' onChange={(e) => setEntry(e.target.value)}/>
-                    <input type="submit" value='stuff'/>
+                <form id='JournalCreate' onSubmit={handleSubmit}>
+                    <input id='inputText' type='text' placeholder='task to complete' onChange={(e) => setEntry(e.target.value)}/>
+                    <input id='submit' type="submit" value='  +  '/>
                 </form>
             </div>
             <div id='Journal'>
