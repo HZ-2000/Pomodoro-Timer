@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { List, arrayMove } from 'react-movable';
+import { List, arrayMove, arrayRemove } from 'react-movable';
 import './Journal.css';
 
 
@@ -14,7 +14,7 @@ export function Journal() {
     }
 
     return (
-        <div>
+        <div id='Journal'>
             <h1 id='journalTitle'>journal</h1>
             <div>
                 <form id='JournalCreate' onSubmit={handleSubmit}>
@@ -22,16 +22,24 @@ export function Journal() {
                     <input id='submit' type="submit" value='  +  '/>
                 </form>
             </div>
-            <div id='Journal'>
             <List
                 values={items}
                 onChange={({ oldIndex, newIndex }) =>
                     setItems(arrayMove(items, oldIndex, newIndex))
                 }
                 renderList={({ children, props }) => <ul {...props}>{children}</ul>}
-                renderItem={({ value, props }) => <li {...props}>{value}</li>}
+                renderItem={({ value, props, index }) => <li {...props}>
+                    {value} <button
+                                onClick={() => {
+                                setItems(
+                                    typeof index !== 'undefined'
+                                    ? arrayRemove(items, index)
+                                    : items
+                                );
+                                }}
+                            >complete</button>
+                    </li>}
                 />
-            </div>
         </div>
     );
 }

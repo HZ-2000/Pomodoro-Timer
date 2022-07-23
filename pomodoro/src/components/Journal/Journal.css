@@ -10,8 +10,12 @@ li {
     margin: 8px;
     border-radius: 4px;
     list-style-type: none;
-    text-align: center;
     font-family: "Major Mono Display";
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 #journalTitle {

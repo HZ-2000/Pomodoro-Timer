@@ -61,7 +61,7 @@ export function Timer() {
 
   return (
     <div id='Timer'>
-      <p>{timerState.isBreak ? 'break':'working'}</p>
+      <h1 id='status'>{timerState.isBreak ? 'break':'working'}</h1>
       <span id='time'>{time}</span>
       <div id='buttons'>
         <button onClick={() => toggleTimer(!ticking)}>
